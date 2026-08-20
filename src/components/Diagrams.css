@@ -1,0 +1,86 @@
+.diagrams {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.results-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  background: var(--code-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.summary-card .label {
+  font-size: 12px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.summary-card .value {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.summary-card .pos {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.reactions-section h3 {
+  font-size: 18px;
+  color: var(--text-h);
+  margin-bottom: 8px;
+}
+
+.reactions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.reactions-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--code-bg);
+  color: var(--text);
+  font-weight: 500;
+  border-bottom: 2px solid var(--border);
+}
+
+.reactions-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-h);
+}
+
+.reactions-table tr:hover td {
+  background: var(--accent-bg);
+}
+
+.beam-schematic {
+  width: 100%;
+  height: 200px;
+}
+
+.plot {
+  width: 100%;
+  height: 280px;
+}
+
+@media (max-width: 768px) {
+  .results-summary {
+    grid-template-columns: 1fr;
+  }
+}
