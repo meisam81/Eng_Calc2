@@ -146,28 +146,46 @@ export function computeMemberStiffness(
   holeDiameter: number,
   gripLength: number,
 ): number {
-  // Frustum cone method (Shigley's Mechanical Engineering Design)
-  // Half-angle α ≈ 30° → tan(α) ≈ 0.577
+  // Shigley frustum cone method (Shigley's Mechanical Engineering Design)
+  // The grip consists of two frustums in series (one from each bearing face
+  // to the midplane). Each frustum has:
+  //   - Inner diameter d = hole diameter (≈ bolt diameter)
+  //   - Outer diameter D = 1.5 × bolt diameter (washer/bearing face)
+  //   - Height t = gripLength / 2 (half the grip)
+  //   - Half-angle α = 30°
+  //
+  // Stiffness of a single hollow frustum:
+  //   k = π E d tan(α) / ln[ ((D + 2t·tanα - d)(D + d)) / ((D + 2t·tanα + d)(D - d)) ]
+  //
+  // Total grip stiffness = k_frustum / 2 (two identical frustums in series)
+  //
+  // Verified against roymech.org Table A:
+  //   d=10mm, D=15mm, t=20mm, E=207 GPa → k_per_plate = 3,503 kN/mm ✓
+
   const alpha = 30 * (Math.PI / 180);
   const tanAlpha = Math.tan(alpha);
-  const d = boltDiameter;
-  const dh = holeDiameter;
-  const l = gripLength;
+  const d = holeDiameter > 0 ? holeDiameter : boltDiameter; // inner diameter (hole)
+  const D = 1.5 * boltDiameter; // outer diameter (bearing face = 1.5 × bolt dia)
+  const t = gripLength / 2; // frustum height = half grip length
 
-  if (l <= 0 || d <= 0) return 0;
+  if (gripLength <= 0 || boltDiameter <= 0) return 0;
+  if (D <= d) return 0;
 
-  // Effective diameter at the frustum top: do = d + l * tan(α) * 2 (simplified)
-  // Using the standard formula:
-  // km = (π * E * d * tan(α)) / ln(2 * l / (d - dh) + 1)  ... alternate form
-  // More standard: km = (π * E * d * tan(α)) / (2 * ln((d + 2*l*tan(α) - dh) / (d - dh)))
-  // But the most common Shigley form for a single frustum:
-  const do_top = d + 2 * l * tanAlpha; // outer diameter at top of frustum
+  const twoTAlpha = 2 * t * tanAlpha;
+  const Dplus2t = D + twoTAlpha; // outer diameter at midplane
 
-  const denom = Math.log((do_top + dh) / (d + dh));
-  if (Math.abs(denom) < 1e-15) return 0;
+  const logNum = (Dplus2t - d) * (D + d);
+  const logDen = (Dplus2t + d) * (D - d);
 
-  const km = (Math.PI * memberModulus * d * tanAlpha) / denom;
-  return km;
+  if (logNum <= 0 || logDen <= 0) return 0;
+
+  const logTerm = Math.log(logNum / logDen);
+  if (Math.abs(logTerm) < 1e-15) return 0;
+
+  const kFrustum = (Math.PI * memberModulus * d * tanAlpha) / logTerm;
+
+  // Two identical frustums in series → k_total = k / 2
+  return kFrustum / 2;
 }
 
 // ---- Main solver ----
