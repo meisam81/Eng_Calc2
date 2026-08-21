@@ -60,10 +60,13 @@
 .sidebar {
   width: 420px;
   min-width: 420px;
+  max-width: 420px;
   padding: 20px;
   border-right: 1px solid var(--border);
   overflow-y: auto;
+  overflow-x: hidden;
   background: var(--bg);
+  box-sizing: border-box;
 
   @media (max-width: 1024px) {
     width: 100%;

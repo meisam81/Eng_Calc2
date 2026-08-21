@@ -38,6 +38,7 @@
   flex-direction: column;
   gap: 4px;
   flex: 1;
+  min-width: 0;
 }
 
 .bolt-form .field label {
@@ -56,6 +57,9 @@
   color: var(--text-h);
   outline: none;
   transition: border-color 0.2s;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
 .bolt-form .field input:focus,
@@ -67,6 +71,7 @@
   display: flex;
   gap: 8px;
   align-items: flex-end;
+  flex-wrap: wrap;
 }
 
 .bolt-form .presets {
