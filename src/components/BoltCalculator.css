@@ -1,0 +1,249 @@
+.bolt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bolt-form .tabs button {
+  padding: 10px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: -2px;
+}
+
+.bolt-form .form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bolt-form .form-section h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-h);
+}
+
+.bolt-form .form-section h4 {
+  margin: 16px 0 4px;
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.bolt-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.bolt-form .field label {
+  font-size: 13px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.bolt-form .field input,
+.bolt-form .field select {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text-h);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.bolt-form .field input:focus,
+.bolt-form .field select:focus {
+  border-color: var(--accent);
+}
+
+.bolt-form .row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.bolt-form .presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.bolt-form .presets button {
+  padding: 4px 8px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--code-bg);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.bolt-form .presets button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-h);
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.radio-label input {
+  cursor: pointer;
+}
+
+.bolt-form .solve-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+
+.bolt-form .solve-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+/* Results */
+.bolt-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid var(--border);
+}
+
+.bolt-results h3 {
+  font-size: 20px;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.bolt-results h4 {
+  font-size: 15px;
+  color: var(--text-h);
+  margin: 12px 0 4px;
+}
+
+.warnings {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.warning-item {
+  padding: 8px 12px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 6px;
+  font-size: 13px;
+  color: #f59e0b;
+}
+
+.results-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.results-summary .summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--code-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.results-summary .summary-card .label {
+  font-size: 11px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.results-summary .summary-card .value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.summary-card.sf-ok {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.summary-card.sf-ok .value {
+  color: #10b981;
+}
+
+.summary-card.sf-warning {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.summary-card.sf-warning .value {
+  color: #f59e0b;
+}
+
+.summary-card.sf-critical {
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.summary-card.sf-critical .value {
+  color: #ef4444;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.results-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-table td:first-child {
+  color: var(--text);
+}
+
+.results-table td:last-child {
+  color: var(--text-h);
+  font-weight: 500;
+  text-align: right;
+  font-family: var(--mono);
+}
+
+@media (max-width: 768px) {
+  .results-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .bolt-form .row {
+    flex-direction: column;
+  }
+}
