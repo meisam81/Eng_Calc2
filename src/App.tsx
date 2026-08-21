@@ -3,7 +3,7 @@ import { BeamForm } from './components/BeamForm'
 import { Diagrams } from './components/Diagrams'
 import { solveBeam } from './beam/solver'
 import type { BeamModel, BeamResults } from './beam/types'
-import { BoltCalculator } from './components/BoltCalculator'
+import { BoltCalculator, BoltResultsDisplay } from './components/BoltCalculator'
 import type { BoltResults } from './bolt/types'
 import './App.css'
 
@@ -112,12 +112,13 @@ function App() {
           <>
             <aside className="sidebar">
               <BoltCalculator
-                results={boltResults}
                 onResults={setBoltResults}
               />
             </aside>
             <main className="main-content">
-              {boltResults ? null : (
+              {boltResults ? (
+                <BoltResultsDisplay results={boltResults} />
+              ) : (
                 <div className="placeholder">
                   <div className="placeholder-icon">⚙️</div>
                   <h2>Bolt & Fastener Joint Calculator</h2>

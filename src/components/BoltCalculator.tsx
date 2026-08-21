@@ -6,10 +6,9 @@ import './BoltCalculator.css';
 
 interface BoltCalculatorProps {
   onResults: (results: BoltResults | null) => void;
-  results: BoltResults | null;
 }
 
-export function BoltCalculator({ onResults, results }: BoltCalculatorProps) {
+export function BoltCalculator({ onResults }: BoltCalculatorProps) {
   const [standard, setStandard] = useState<ThreadStandard>('ISO');
   const [presetIdx, setPresetIdx] = useState(4); // M10 × 1.5
   const [nominalDiameter, setNominalDiameter] = useState(0.010);
@@ -300,13 +299,11 @@ export function BoltCalculator({ onResults, results }: BoltCalculatorProps) {
       </div>
 
       <button className="solve-btn" onClick={handleSolve}>Calculate Joint</button>
-
-      {results && <BoltResultsDisplay results={results} />}
     </div>
   );
 }
 
-function BoltResultsDisplay({ results }: { results: BoltResults }) {
+export function BoltResultsDisplay({ results }: { results: BoltResults }) {
   const fmt = (n: number, decimals = 4): string => {
     if (Math.abs(n) < 1e-10) return '0';
     if (Math.abs(n) > 1e6 || (Math.abs(n) < 1e-4 && n !== 0)) return n.toExponential(3);
