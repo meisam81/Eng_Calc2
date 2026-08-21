@@ -305,6 +305,10 @@ export function solveBoltJoint(
     safetyFactorFatigue,
     boltStress,
     memberStress,
+    boltDiameter: joint.boltDiameter,
+    holeDiameter: joint.holeDiameter,
+    gripLength: joint.clampedLength,
+    frustumAngle: 30 * (Math.PI / 180),
     warnings,
   };
 }

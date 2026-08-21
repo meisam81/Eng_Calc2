@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { BoltSpec, MaterialProps, JointGeometry, ThreadStandard } from '../bolt/types';
 import { THREAD_PRESETS, MATERIAL_PRESETS, solveBoltJoint } from '../bolt/solver';
 import type { BoltResults } from '../bolt/types';
+import { BoltJointDiagram } from './BoltJointDiagram';
 import './BoltCalculator.css';
 
 interface BoltCalculatorProps {
@@ -337,6 +338,8 @@ export function BoltResultsDisplay({ results }: { results: BoltResults }) {
           ))}
         </div>
       )}
+
+      <BoltJointDiagram results={results} />
 
       <div className="results-summary">
         <div className="summary-card">

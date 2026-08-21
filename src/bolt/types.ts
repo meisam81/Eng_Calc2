@@ -66,6 +66,11 @@ export interface BoltResults {
   // Stress values
   boltStress: number; // σ_bolt (Pa)
   memberStress: number; // σ_member (Pa)
+  // Joint geometry (for visualization)
+  boltDiameter: number; // d (m)
+  holeDiameter: number; // dh (m)
+  gripLength: number; // l (m)
+  frustumAngle: number; // α (rad) — pressure cone half-angle
   // Warnings
   warnings: string[];
 }
