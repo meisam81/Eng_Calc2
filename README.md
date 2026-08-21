@@ -1,9 +1,12 @@
-# Engineering Calculator — Beam Analysis Tool
+# Engineering Calculator
 
-A web application for structural engineering beam analysis. Configure beam properties, supports, and loads to solve for shear force diagrams, bending moment diagrams, deflection curves, and support reactions.
+A web application for structural and mechanical engineering calculations. Currently includes a **Beam Analysis Tool** and a **Bolt & Fastener Joint Calculator**.
+
+🔗 **Live demo: [https://meisam81.github.io/Eng_Calc2/](https://meisam81.github.io/Eng_Calc2/)**
 
 ## Features
 
+### Beam Analysis Tool
 - **Beam Properties**: Length, modulus of elasticity (E), and moment of inertia (I) with material presets
 - **Supports**: Pin, roller, fixed, and free supports at any position along the beam
 - **Loads**: Point forces, distributed loads (uniform & trapezoidal), and applied moments
@@ -14,6 +17,13 @@ A web application for structural engineering beam analysis. Configure beam prope
   - Deflection curve
   - Beam schematic visualization
   - Maximum values with locations
+
+### Bolt & Fastener Joint Calculator
+- **Thread Specs**: ISO metric & UN imperial thread size presets with auto-computed geometry
+- **Torque ↔ Preload**: Long-form torque equation with thread and bearing friction
+- **Joint Stiffness**: Shigley hollow frustum cone method (verified against published reference data)
+- **Safety Factors**: Yield, separation, and fatigue (Goodman)
+- **Visualization**: Bolted joint schematic with pressure cone diagram
 
 ## Solver
 
